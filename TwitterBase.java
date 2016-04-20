@@ -29,8 +29,8 @@ public abstract class TwitterBase{
 		if (credentials){
             System.err.println("Trying to connect to twitter...");
             Configuration configuration = builder.build();
-            TwitterFactory factory = new TwitterFactory(configuration);
-            Twitter twitter = factory.getInstance();
+            factory = new TwitterFactory(configuration);
+            twitter = factory.getInstance();
             System.err.println("Connected to Twitter.");		
 		
 		
@@ -70,13 +70,13 @@ public abstract class TwitterBase{
 	}
 
 	
-	protected void write(String msg){
+	protected void tweet(String msg){
 		// Writes the following message to Twitter
 		if (twitter != null){
 			try{
 				Status status = twitter.updateStatus(msg);
 			}
-			catch (TwitterException tex){
+			catch (Exception tex){
 				System.err.println("Error posting to Twitter.");
 				tex.printStackTrace();
 			}
